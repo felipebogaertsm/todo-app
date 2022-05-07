@@ -1,20 +1,32 @@
 from uuid import UUID, uuid4
 
-from fastapi import APIRouter
+from fastapi import APIRouter, status, Form
 
 router = APIRouter()
 
 
-@router.get("/", tags=["users"])
+@router.get("/users", tags=["users"])
 async def get_all_users() -> list[dict[str, str]]:
     return [{"email": "felipebogaerts@gmail.com"}]
 
 
-@router.get("/{user_id}")
+@router.get("/users/{user_id}")
 async def get_user_by_id(user_id: UUID) -> dict[str, str]:
-    return {"id": user_id, "email": "me@felipebm.com"}
+    return {"_id": user_id, "email": "me@felipebm.com"}
 
 
-@router.post("/", tags=["users", "create"])
+@router.post(
+    "/users",
+    tags=["users", "create"],
+    status_code=status.HTTP_201_CREATED,
+)
 async def create_user(user_email: str, user_password: str) -> dict[str, str]:
-    return {"id": uuid4(), "email": user_email, "password": user_password}
+    return {"_id": uuid4(), "email": user_email, "password": user_password}
+
+
+@router.post("/users/token/obtain", tags=["users", "token", "obtain"])
+async def obtain_user_token(
+    email: str = Form(...),
+    password: str = Form(...),
+) -> dict[str, str]:
+    return {"email": email, "password": password}
