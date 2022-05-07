@@ -17,5 +17,5 @@ jobs:
       - name: Building containers and running tests
         run: |
           cd ./web/
-          docker-compose up --build
+          docker-compose up --build web-test
           
