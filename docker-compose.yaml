@@ -13,6 +13,8 @@ services:
   web:
     build: ./web/
     container_name: web
+    depends_on:
+      - db
     env_file:
       - ./.envs/dev.env
     ports:
@@ -21,7 +23,15 @@ services:
       - "./web/:/usr/app/"
     entrypoint: |
       uvicorn main:app --reload
+  web-test:
+    container_name: web-test
+    build: ./web/
+    entrypoint: pytest
 
 volumes:
   db:
     driver: local
+
+networks:
+  nginx:
+    external: true

@@ -1,0 +1,21 @@
+name: To do CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+  test:
+    name: Testing
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Building containers and running tests
+        run: |
+          cd ./web/
+          docker-compose up --build
+          
