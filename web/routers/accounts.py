@@ -2,7 +2,7 @@ from uuid import UUID, uuid4
 
 from fastapi import APIRouter, status, Form
 
-router = APIRouter()
+router = APIRouter(prefix="/accounts")
 
 
 @router.get("/users", tags=["users"])
