@@ -1,1 +1,11 @@
+*.pyc
+.DS_Store
+.envs/
 */__pycache__/*
+
+# IDEs
+.vscode/
+.idea/
+
+# data
+*.dump
