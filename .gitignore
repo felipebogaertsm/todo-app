@@ -1,7 +1,10 @@
 *.pyc
 .DS_Store
-.envs/
 */__pycache__/*
+
+# Envs
+dev.env
+prod.env
 
 # IDEs
 .vscode/

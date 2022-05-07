@@ -16,6 +16,5 @@ jobs:
       - uses: actions/checkout@v3
       - name: Building containers and running tests
         run: |
-          cd ./web/
-          docker-compose up --build web-test
+          docker-compose -f ./docker-compose-test.yaml up --build
           
