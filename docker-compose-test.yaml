@@ -1,17 +1,10 @@
 version: "3.9"
 
 services:
-  db:
-    image: postgres:14.1-alpine
-    restart: always
-    env_file:
-      - ./.envs/test.env
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./db:/var/lib/postgresql/data
   web-test:
     container_name: web-test
+    env_file:
+      - ./.envs/test.env
     build: ./web/
     entrypoint: pytest
 
